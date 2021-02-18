@@ -22,8 +22,8 @@ public class BookstoreApplication {
 	public CommandLineRunner demo(BookRepository repository) {
 		log.info("save a few books");
 		return (args) -> {
-			Book f1 = new Book("The Hobbit", "J.R.R. Tolkien", "kaivinkone", 1979L, 30.0);
-			Book f2 = new Book("Lya ei ikinä jää", "Aitio", "vtcht", 2021L, 50.0);
+			Book f1 = new Book("The Hobbit", "J.R.R. Tolkien", "493204", 1937L, 50.0);
+			Book f2 = new Book("Harry Potter and The Chamber of Secrets", "J.K. Rowling", "932710", 1998L, 45.0);
 			repository.save(f1);
 			repository.save(f2);
 			
