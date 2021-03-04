@@ -21,13 +21,21 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository repository) {
+	public CommandLineRunner demo(BookRepository repository, CategoryRepository repository2) {
 		log.info("save a few books");
 		return (args) -> {
-			Book f1 = new Book("The Hobbit", "J.R.R. Tolkien", "493204", 1937L, 50.0);
-			Book f2 = new Book("Harry Potter and The Chamber of Secrets", "J.K. Rowling", "932710", 1998L, 45.0);
-			repository.save(f1);
-			repository.save(f2);
+			
+			
+			
+			Category c1 = new Category("Fantasy");
+			repository2.save(c1);
+			Category c2 = new Category("Mystery");
+			repository2.save(c2);
+			Category c3 = new Category("Horror");
+			repository2.save(c3);
+			repository.save(new Book("The Hobbit", "J.R.R. Tolkien", "493204", 1937L, 50.0, repository2.findByName("Fantasy").get(0)));
+			repository.save(new Book("Harry Potter and The Chamber of Secrets", "J.K. Rowling", "932710", 1998L, 45.0, repository2.findByName("Horror").get(0)));
+		
 			
 		log.info("fetch all books");
 		for (Book book : repository.findAll()) {
@@ -37,24 +45,8 @@ public class BookstoreApplication {
 		};
 		
 	}
-	@Bean
-	public CommandLineRunner demo2(CategoryRepository repository2) {
-		log.info("save a few categories");
-		return (args) -> {
-			Category c1 = new Category("Fantasy");
-			Category c2 = new Category("Mystery");
-			Category c3 = new Category("Horror");
-			repository2.save(c1);
-			repository2.save(c2);
-			repository2.save(c3);
-			
-		log.info("fetch all categories");
-		for (Category category : repository2.findAll()) {
-			log.info(category.toString());
-		}
-			
-		};
+
 	};
 	
 	
-}
+

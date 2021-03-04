@@ -35,14 +35,14 @@ public class CategoryController {
 		return "redirect:category";
 		
 	}
-	@RequestMapping(value="/editcategory/{id}")
-	public String addCategory(@PathVariable("id") Long id, Model model) {
+	@RequestMapping(value="/editcategory/{cid}")
+	public String addCategory(@PathVariable("cid") Long id, Model model) {
 		model.addAttribute("category", repository2.findById(id));
 		return "editcategory";
 	}
 	
-	@GetMapping("/deletecategory/{id}")
-	public String deleteCategory(@PathVariable("id") Long id, Model model) {
+	@GetMapping("/deletecategory/{cid}")
+	public String deleteCategory(@PathVariable("cid") Long id, Model model) {
 		repository2.deleteById(id);
 		return "redirect:../category";
 		}

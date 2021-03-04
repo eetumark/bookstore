@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import fi.hh.swd20.bookstore2.domain.Book;
 import fi.hh.swd20.bookstore2.domain.BookRepository;
+import fi.hh.swd20.bookstore2.domain.CategoryRepository;
 
 
 
@@ -19,6 +20,8 @@ public class BookController {
 	
 	@Autowired
 	private BookRepository repository;
+	@Autowired
+	private CategoryRepository repository2;
 	
 	@RequestMapping(value= {"/", "/booklist"})
 	public String bookList(Model model) {
@@ -28,6 +31,7 @@ public class BookController {
 	@RequestMapping(value= "/add")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
+		model.addAttribute("categories", repository2.findAll());
 		return "addbook";
 		
 	}
