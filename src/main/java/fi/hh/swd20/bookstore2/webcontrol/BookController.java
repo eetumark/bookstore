@@ -34,7 +34,6 @@ public class BookController {
 	
 	@RequestMapping(value= {"/login"})
 	public String bookLogin(Model model) {
-				model.addAttribute("books", repository.findAll());
 				return "login";
 	}
 	
