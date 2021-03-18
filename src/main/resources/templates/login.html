@@ -6,19 +6,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
 </head>
 <body>
-	<h1>Edit Category</h1>
+	<h1>Login</h1>
 	<table>
 	<tr>
-		<th>Categories</th>
 		
 	</tr>
 		<div class="col-md-4">
-		
-		<form th:object="${category}" th:action="@{../saveCategory}" action="#" method="post">
-		<input type="hidden" th:field="*{id}" class="form-control"/>
-			<input type="text" th:field="*{name}" />
-		<input type="submit" class="btn btn-success" value="Save"></input>
+		<div th:if="${param.error}">
+			Invalid username and password.
+		</div>
+		<form th:action="@{/login}" method="post">
+			<div><label> Username: <input type="text" name="username"/> </label></div>
+			<div><label> Password: <input type="password" name="password"/> </label></div>
+			<div><input type="submit" value="Sign In" class="btn-sm btn-success"/></div>
 		</form>
+
 		
 		</div>
 	</table>

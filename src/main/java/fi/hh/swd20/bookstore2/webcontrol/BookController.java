@@ -31,6 +31,18 @@ public class BookController {
 	@Autowired
 	private CategoryRepository repository2;
 	
+	
+	@RequestMapping(value= {"/login"})
+	public String bookLogin(Model model) {
+				model.addAttribute("books", repository.findAll());
+				return "login";
+	}
+	
+	@RequestMapping(value= {"/logout"})
+	public String bookLogout(Model model) {
+				return "login";
+	}
+	
 	@RequestMapping(value= {"/", "/booklist"})
 	public String bookList(Model model) {
 				model.addAttribute("books", repository.findAll());

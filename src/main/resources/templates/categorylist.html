@@ -16,7 +16,7 @@
 		<tr th:each="category : ${categories}">
 			<td th:text="${category.name}"></td>
 			<td><a th:href="@{/deletecategory/{id}(id=${category.id})}" class="btn btn-danger">Delete</a></td>
-			<td><a th:href="@{/editcategory/{id}(id=${category.id})}">Edit</a></td>
+			<td><a th:href="@{/editcategory/{id}(id=${category.id})}" class="btn btn-primary">Edit</a></td>
 		</tr>
 	</table>
 	<a href="/addcategory" class="btn btn-success">Add Category</a>
