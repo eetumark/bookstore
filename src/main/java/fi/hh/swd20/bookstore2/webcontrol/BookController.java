@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,12 +74,13 @@ public class BookController {
 		return "redirect:booklist";
 		
 	}
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value="/edit/{id}")
 	public String addBook(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("book", repository.findById(id));
 		return "editbook";
 	}
-	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/delete/{id}")
 	public String deleteBook(@PathVariable("id") Long id, Model model) {
 		repository.deleteById(id);
